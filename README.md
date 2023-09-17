@@ -2,7 +2,7 @@
 
 ![Latest release](https://img.shields.io/github/v/tag/deltalab-org/sipbot?label=release)
 [![CI](https://github.com/deltalab-org/sipbot/actions/workflows/ci.yml/badge.svg)](https://github.com/deltalab-org/sipbot/actions/workflows/ci.yml)
-![Coverage](https://img.shields.io/badge/Coverage-16.9%25-red)
+![Coverage](https://img.shields.io/badge/Coverage-17.2%25-red)
 [![Go Report Card](https://goreportcard.com/badge/github.com/deltalab-org/sipbot)](https://goreportcard.com/report/github.com/deltalab-org/sipbot)
 
 Bot to manage registrations in a [Flexisip](https://www.linphone.org/technical-corner/flexisip) server
