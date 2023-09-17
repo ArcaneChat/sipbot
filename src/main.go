@@ -18,9 +18,19 @@ func onBotInit(cli *botcli.BotCli, bot *deltachat.Bot, cmd *cobra.Command, args 
 		if isConf || err != nil {
 			continue
 		}
-		bot.Rpc.SetConfig(accId, "delete_device_after", option.Some("86400")) // one day
-		bot.Rpc.SetConfig(accId, "delete_server_after", option.Some("1"))
-		bot.Rpc.SetConfig(accId, "displayname", option.Some("SIPBot"))
+
+		err = bot.Rpc.SetConfig(accId, "delete_device_after", option.Some("86400")) // one day
+		if err != nil {
+			cli.Logger.Error(err)
+		}
+		err = bot.Rpc.SetConfig(accId, "delete_server_after", option.Some("1"))
+		if err != nil {
+			cli.Logger.Error(err)
+		}
+		err = bot.Rpc.SetConfig(accId, "displayname", option.Some("SIPBot"))
+		if err != nil {
+			cli.Logger.Error(err)
+		}
 	}
 
 	bot.OnNewMsg(onNewMsg)
@@ -43,12 +53,9 @@ func onBotStart(cli *botcli.BotCli, bot *deltachat.Bot, cmd *cobra.Command, args
 	}
 }
 
-func initCli(cli *botcli.BotCli) {
+func main() {
 	cli.OnBotInit(onBotInit)
 	cli.OnBotStart(onBotStart)
-}
-
-func main() {
 	if err := cli.Start(); err != nil {
 		cli.Logger.Error(err)
 	}
