@@ -8,19 +8,19 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestEcho(t *testing.T) {
+func TestErrResponse(t *testing.T) {
 	acfactory.WithOnlineBot(func(bot *deltachat.Bot, botAcc deltachat.AccountId) {
 		acfactory.WithOnlineAccount(func(userRpc *deltachat.Rpc, userAcc deltachat.AccountId) {
-			bot.OnNewMsg(echo)
+			bot.OnNewMsg(onNewMsg)
 			go bot.Run() //nolint:errcheck
 
 			chatWithBot := acfactory.CreateChat(userRpc, userAcc, bot.Rpc, botAcc)
 
-			_, err := userRpc.MiscSendTextMessage(userAcc, chatWithBot, "/register")
+			_, err := userRpc.MiscSendTextMessage(userAcc, chatWithBot, "hi")
 			require.Nil(t, err)
 
 			msg := acfactory.NextMsg(userRpc, userAcc)
-			assert.Equal(t, "", msg.Text)
+			assert.JSONEq(t, "{error:\"Unknown command\"}", msg.Text)
 		})
 	})
 }
