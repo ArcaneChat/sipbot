@@ -12,6 +12,9 @@ import (
 var cli = botcli.New("sipbot")
 
 func onBotInit(cli *botcli.BotCli, bot *deltachat.Bot, cmd *cobra.Command, args []string) {
+	bot.OnNewMsg(onNewMsg)
+
+	// set message auto-deletion for to cleanup
 	accounts, _ := bot.Rpc.GetAllAccountIds()
 	for _, accId := range accounts {
 		isConf, err := bot.Rpc.IsConfigured(accId)
@@ -32,20 +35,16 @@ func onBotInit(cli *botcli.BotCli, bot *deltachat.Bot, cmd *cobra.Command, args 
 			cli.Logger.Error(err)
 		}
 	}
-
-	bot.OnNewMsg(onNewMsg)
 }
 
 func onBotStart(cli *botcli.BotCli, bot *deltachat.Bot, cmd *cobra.Command, args []string) {
 	dsn := os.Getenv("SIPBOT_DBDSN")
 	domain := os.Getenv("SIPBOT_DOMAIN")
 	if dsn == "" {
-		cli.Logger.Error("SIPBOT_DBDSN env var is not set")
-		bot.Stop()
+		cli.Logger.Fatal("SIPBOT_DBDSN env var is not set")
 	}
 	if domain == "" {
-		cli.Logger.Error("SIPBOT_DOMAIN env var is not set")
-		bot.Stop()
+		cli.Logger.Fatal("SIPBOT_DOMAIN env var is not set")
 	}
 	if err := initDB(dsn, domain); err != nil {
 		cli.Logger.Error(err)
