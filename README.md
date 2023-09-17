@@ -36,7 +36,7 @@ with the [DSN (Data Source Name)](https://github.com/go-sql-driver/mysql/#dsn-da
 to connect to the Flexisip database, and set `SIPBOT_DOMAIN` to the domain name of the SIP server:
 
 ```sh
-export SIPBOT_DBDSN="..."
+export SIPBOT_DBDSN="flexisip:<PASSWORD>@tcp(localhost:3306)/flexisip_accounts"
 export SIPBOT_DOMAIN="example.com"
 sipbot serve
 ```
