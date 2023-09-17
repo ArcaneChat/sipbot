@@ -20,7 +20,7 @@ func TestErrResponse(t *testing.T) {
 			require.Nil(t, err)
 
 			msg := acfactory.NextMsg(userRpc, userAcc)
-			assert.JSONEq(t, "{error:\"Unknown command\"}", msg.Text)
+			assert.JSONEq(t, "{\"error\":\"Unknown command\"}", msg.Text)
 		})
 	})
 }
