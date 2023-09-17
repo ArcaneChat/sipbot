@@ -1,11 +1,12 @@
-// TODO: replace next line with your module name
-module github.com/deltachat-bot/echobot-go
+module github.com/deltalab-org/sipbot
 
 go 1.21
 
 require (
 	github.com/deltachat-bot/deltabot-cli-go v0.4.1-0.20230917125509-c3c4b6311b46
 	github.com/deltachat/deltachat-rpc-client-go v0.17.1-0.20230829053314-3aca819c8a98
+	github.com/go-sql-driver/mysql v1.7.1
+	github.com/sethvargo/go-password v0.2.0
 	github.com/spf13/cobra v1.7.0
 	github.com/stretchr/testify v1.8.2
 )

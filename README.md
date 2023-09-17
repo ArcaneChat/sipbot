@@ -1,28 +1,20 @@
-#  deltabot-cli-go template
+#  sipbot
 
-![Latest release](https://img.shields.io/github/v/tag/deltachat-bot/echobot-go?label=release)
-[![CI](https://github.com/deltachat-bot/echobot-go/actions/workflows/ci.yml/badge.svg)](https://github.com/deltachat-bot/echobot-go/actions/workflows/ci.yml)
+![Latest release](https://img.shields.io/github/v/tag/deltalab-org/sipbot?label=release)
+[![CI](https://github.com/deltalab-org/sipbot/actions/workflows/ci.yml/badge.svg)](https://github.com/deltalab-org/sipbot/actions/workflows/ci.yml)
 ![Coverage](https://img.shields.io/badge/Coverage-20.0%25-red)
-[![Go Report Card](https://goreportcard.com/badge/github.com/deltachat-bot/echobot-go)](https://goreportcard.com/report/github.com/deltachat-bot/echobot-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/deltalab-org/sipbot)](https://goreportcard.com/report/github.com/deltalab-org/sipbot)
 
-This is a template project using the [deltabot-cli-go](https://github.com/deltachat-bot/deltabot-cli-go) library.
-
-Main features:
-
-* Unit tests, Github CI with fake email server
-* Auto-generated code coverage badge
-* Check code formatting
-* Check code with golangci-lint
-* Release code with goreleaser
+Bot to manage registrations in a [Flexisip](https://www.linphone.org/technical-corner/flexisip) server
 
 ## Install
 
-Binary releases can be found at: https://github.com/deltachat-bot/echobot-go/releases
+Binary releases can be found at: https://github.com/deltalab-org/sipbot/releases
 
 To install from source:
 
 ```sh
-go install github.com/deltachat-bot/echobot-go@latest
+go install github.com/deltalab-org/sipbot@latest
 ```
 
 ### Installing deltachat-rpc-server
@@ -36,13 +28,21 @@ https://github.com/deltachat/deltachat-core-rust/tree/master/deltachat-rpc-serve
 Configure the bot:
 
 ```sh
-echobot init bot@example.com PASSWORD
+sipbot init bot@example.com PASSWORD
 ```
 
-Start listening to incoming messages:
+To start listening to incoming messages, you must set the environment variable `SIPBOT_DBDSN`
+with the [DSN (Data Source Name)](https://github.com/go-sql-driver/mysql/#dsn-data-source-name)
+to connect to the Flexisip database, and set `SIPBOT_DOMAIN` to the domain name of the SIP server:
 
 ```sh
-echobot serve
+export SIPBOT_DBDSN="..."
+export SIPBOT_DOMAIN="example.com"
+sipbot serve
 ```
 
-Run `echobot --help` to see all available options.
+Run `sipbot --help` to see all available options.
+
+## Contributing
+
+Pull requests are welcome! check [CONTRIBUTING.md](CONTRIBUTING.md)

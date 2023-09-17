@@ -5,6 +5,7 @@ import (
 
 	"github.com/deltachat/deltachat-rpc-client-go/deltachat"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestEcho(t *testing.T) {
@@ -15,11 +16,11 @@ func TestEcho(t *testing.T) {
 
 			chatWithBot := acfactory.CreateChat(userRpc, userAcc, bot.Rpc, botAcc)
 
-			_, err := userRpc.MiscSendTextMessage(userAcc, chatWithBot, "hi")
-			assert.Nil(t, err)
+			_, err := userRpc.MiscSendTextMessage(userAcc, chatWithBot, "/register")
+			require.Nil(t, err)
 
 			msg := acfactory.NextMsg(userRpc, userAcc)
-			assert.Equal(t, "hi", msg.Text)
+			assert.Equal(t, "", msg.Text)
 		})
 	})
 }
