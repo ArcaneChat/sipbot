@@ -14,7 +14,7 @@ Binary releases can be found at: https://github.com/deltalab-org/sipbot/releases
 To install from source:
 
 ```sh
-go install github.com/deltalab-org/sipbot/sipbot@latest
+go install github.com/deltalab-org/sipbot/sipbot@master
 ```
 
 ### Installing deltachat-rpc-server
